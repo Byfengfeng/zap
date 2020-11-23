@@ -30,7 +30,7 @@ import (
 	"github.com/Byfengfeng/zap/internal/bufferpool"
 	"github.com/Byfengfeng/zap/internal/exit"
 
-	"github.com/Byfengfeng/multierr"
+	"go.uber.org/multierr"
 )
 
 var (

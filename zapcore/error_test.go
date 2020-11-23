@@ -29,7 +29,7 @@ import (
 	richErrors "github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Byfengfeng/multierr"
+	"go.uber.org/multierr"
 	. "github.com/Byfengfeng/zap/zapcore"
 )
 

@@ -33,7 +33,7 @@ import (
 	"github.com/Byfengfeng/zap/internal/bufferpool"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/Byfengfeng/multierr"
+	"go.uber.org/multierr"
 )
 
 var _defaultEncoderConfig = EncoderConfig{
