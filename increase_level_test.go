@@ -25,8 +25,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"go.uber.org/zap/zapcore"
-	"go.uber.org/zap/zaptest/observer"
+	"github.com/Byfengfeng/zap/zapcore"
+	"github.com/Byfengfeng/zap/zaptest/observer"
 )
 
 func newLoggedEntry(level zapcore.Level, msg string, fields ...zapcore.Field) observer.LoggedEntry {

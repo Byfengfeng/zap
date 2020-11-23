@@ -23,8 +23,8 @@ package zaptest
 import (
 	"bytes"
 
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
+	"github.com/Byfengfeng/zap"
+	"github.com/Byfengfeng/zap/zapcore"
 )
 
 // LoggerOption configures the test logger built by NewLogger.
@@ -95,6 +95,8 @@ func NewLogger(t TestingT, opts ...LoggerOption) *zap.Logger {
 			zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig()),
 			writer,
 			cfg.Level,
+			false,
+			nil,
 		),
 		zapOptions...,
 	)

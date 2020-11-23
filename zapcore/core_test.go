@@ -27,8 +27,8 @@ import (
 	"testing"
 	"time"
 
-	"go.uber.org/zap/internal/ztest"
-	. "go.uber.org/zap/zapcore"
+	"github.com/Byfengfeng/zap/internal/ztest"
+	. "github.com/Byfengfeng/zap/zapcore"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -81,6 +81,8 @@ func TestIOCore(t *testing.T) {
 		NewJSONEncoder(cfg),
 		temp,
 		InfoLevel,
+		false,
+		nil,
 	).With([]Field{makeInt64Field("k", 1)})
 	defer assert.NoError(t, core.Sync(), "Expected Syncing a temp file to succeed.")
 
@@ -114,6 +116,8 @@ func TestIOCoreSyncFail(t *testing.T) {
 		NewJSONEncoder(testEncoderConfig()),
 		sink,
 		DebugLevel,
+		false,
+		nil,
 	)
 
 	assert.Equal(
@@ -144,6 +148,8 @@ func TestIOCoreSyncsOutput(t *testing.T) {
 			NewJSONEncoder(testEncoderConfig()),
 			sink,
 			DebugLevel,
+			false,
+			nil,
 		)
 
 		core.Write(tt.entry, nil)
@@ -156,6 +162,8 @@ func TestIOCoreWriteFailure(t *testing.T) {
 		NewJSONEncoder(testEncoderConfig()),
 		Lock(&ztest.FailWriter{}),
 		DebugLevel,
+		false,
+		nil,
 	)
 	err := core.Write(Entry{}, nil)
 	// Should log the error.

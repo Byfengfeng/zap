@@ -27,8 +27,8 @@ import (
 	"os"
 	"time"
 
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
+	"github.com/Byfengfeng/zap"
+	"github.com/Byfengfeng/zap/zapcore"
 )
 
 func Example_presets() {
@@ -141,10 +141,10 @@ func Example_advancedConfiguration() {
 	// Join the outputs, encoders, and level-handling functions into
 	// zapcore.Cores, then tee the four cores together.
 	core := zapcore.NewTee(
-		zapcore.NewCore(kafkaEncoder, topicErrors, highPriority),
-		zapcore.NewCore(consoleEncoder, consoleErrors, highPriority),
-		zapcore.NewCore(kafkaEncoder, topicDebugging, lowPriority),
-		zapcore.NewCore(consoleEncoder, consoleDebugging, lowPriority),
+		zapcore.NewCore(kafkaEncoder, topicErrors, highPriority,false,nil),
+		zapcore.NewCore(consoleEncoder, consoleErrors, highPriority,false,nil),
+		zapcore.NewCore(kafkaEncoder, topicDebugging, lowPriority,false,nil),
+		zapcore.NewCore(consoleEncoder, consoleDebugging, lowPriority,false,nil),
 	)
 
 	// From a zapcore.Core, it's easy to construct a Logger.
@@ -210,6 +210,8 @@ func ExampleAtomicLevel() {
 		zapcore.NewJSONEncoder(encoderCfg),
 		zapcore.Lock(os.Stdout),
 		atom,
+		false,
+		nil,
 	))
 	defer logger.Sync()
 

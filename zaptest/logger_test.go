@@ -27,9 +27,9 @@ import (
 	"strings"
 	"testing"
 
-	"go.uber.org/zap"
-	"go.uber.org/zap/internal/ztest"
-	"go.uber.org/zap/zapcore"
+	"github.com/Byfengfeng/zap"
+	"github.com/Byfengfeng/zap/internal/ztest"
+	"github.com/Byfengfeng/zap/zapcore"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -128,6 +128,8 @@ func TestTestLoggerErrorOutput(t *testing.T) {
 			zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig()),
 			zapcore.Lock(zapcore.AddSync(ztest.FailWriter{})),
 			zapcore.DebugLevel,
+			false,
+			nil,
 		)
 	}))
 

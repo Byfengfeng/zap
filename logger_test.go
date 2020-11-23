@@ -25,10 +25,10 @@ import (
 	"sync"
 	"testing"
 
-	"go.uber.org/zap/internal/exit"
-	"go.uber.org/zap/internal/ztest"
-	"go.uber.org/zap/zapcore"
-	"go.uber.org/zap/zaptest/observer"
+	"github.com/Byfengfeng/zap/internal/exit"
+	"github.com/Byfengfeng/zap/internal/ztest"
+	"github.com/Byfengfeng/zap/zapcore"
+	"github.com/Byfengfeng/zap/zaptest/observer"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -304,6 +304,8 @@ func TestLoggerWriteFailure(t *testing.T) {
 			zapcore.NewJSONEncoder(NewProductionConfig().EncoderConfig),
 			zapcore.Lock(zapcore.AddSync(ztest.FailWriter{})),
 			DebugLevel,
+			false,
+			nil,
 		),
 		ErrorOutput(errSink),
 	)
@@ -329,6 +331,8 @@ func TestLoggerSyncFail(t *testing.T) {
 		zapcore.NewJSONEncoder(zapcore.EncoderConfig{}),
 		noSync,
 		DebugLevel,
+		false,
+		nil,
 	))
 	assert.Equal(t, err, logger.Sync(), "Expected Logger.Sync to propagate errors.")
 	assert.Equal(t, err, logger.Sugar().Sync(), "Expected SugaredLogger.Sync to propagate errors.")
@@ -384,8 +388,8 @@ func TestLoggerAddCallerFunction(t *testing.T) {
 		},
 		{
 			options:         opts(AddCaller()),
-			loggerFunction:  "go.uber.org/zap.infoLog",
-			sugaredFunction: "go.uber.org/zap.infoLogSugared",
+			loggerFunction:  "github.com/Byfengfeng/zap.infoLog",
+			sugaredFunction: "github.com/Byfengfeng/zap.infoLogSugared",
 		},
 		{
 			options:         opts(AddCaller(), WithCaller(false)),
@@ -394,8 +398,8 @@ func TestLoggerAddCallerFunction(t *testing.T) {
 		},
 		{
 			options:         opts(WithCaller(true)),
-			loggerFunction:  "go.uber.org/zap.infoLog",
-			sugaredFunction: "go.uber.org/zap.infoLogSugared",
+			loggerFunction:  "github.com/Byfengfeng/zap.infoLog",
+			sugaredFunction: "github.com/Byfengfeng/zap.infoLogSugared",
 		},
 		{
 			options:         opts(WithCaller(true), WithCaller(false)),
@@ -404,13 +408,13 @@ func TestLoggerAddCallerFunction(t *testing.T) {
 		},
 		{
 			options:         opts(AddCaller(), AddCallerSkip(1), AddCallerSkip(-1)),
-			loggerFunction:  "go.uber.org/zap.infoLog",
-			sugaredFunction: "go.uber.org/zap.infoLogSugared",
+			loggerFunction:  "github.com/Byfengfeng/zap.infoLog",
+			sugaredFunction: "github.com/Byfengfeng/zap.infoLogSugared",
 		},
 		{
 			options:         opts(AddCaller(), AddCallerSkip(2)),
-			loggerFunction:  "go.uber.org/zap.withLogger",
-			sugaredFunction: "go.uber.org/zap.withLogger",
+			loggerFunction:  "github.com/Byfengfeng/zap.withLogger",
+			sugaredFunction: "github.com/Byfengfeng/zap.withLogger",
 		},
 		{
 			options:         opts(AddCaller(), AddCallerSkip(2), AddCallerSkip(3)),

@@ -24,9 +24,9 @@ import (
 	"errors"
 	"testing"
 
-	"go.uber.org/zap/internal/ztest"
-	. "go.uber.org/zap/zapcore"
-	"go.uber.org/zap/zaptest/observer"
+	"github.com/Byfengfeng/zap/internal/ztest"
+	. "github.com/Byfengfeng/zap/zapcore"
+	"github.com/Byfengfeng/zap/zaptest/observer"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -147,6 +147,8 @@ func TestTeeSync(t *testing.T) {
 		NewJSONEncoder(testEncoderConfig()),
 		sink,
 		DebugLevel,
+		false,
+		nil,
 	)
 	tee = NewTee(tee, noSync)
 	assert.Equal(t, err, tee.Sync(), "Expected an error when part of tee can't Sync.")

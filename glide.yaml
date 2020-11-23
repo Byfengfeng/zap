@@ -1,9 +1,9 @@
-package: go.uber.org/zap
+package: github.com/Byfengfeng/zap
 license: MIT
 import:
-- package: go.uber.org/atomic
+- package: github.com/Byfengfeng/atomic
   version: ^1
-- package: go.uber.org/multierr
+- package: github.com/Byfengfeng/multierr
   version: ^1
 testImport:
 - package: github.com/satori/go.uuid

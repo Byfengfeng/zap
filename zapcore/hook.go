@@ -20,7 +20,7 @@
 
 package zapcore
 
-import "go.uber.org/multierr"
+import "github.com/Byfengfeng/multierr"
 
 type hooked struct {
 	Core

@@ -27,8 +27,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/atomic"
-	"go.uber.org/zap/internal/ztest"
-	. "go.uber.org/zap/zapcore"
+	"github.com/Byfengfeng/zap/internal/ztest"
+	. "github.com/Byfengfeng/zap/zapcore"
 )
 
 var counterTestCases = [][]string{
@@ -210,6 +210,8 @@ func BenchmarkSampler_Check(b *testing.B) {
 					NewJSONEncoder(testEncoderConfig()),
 					&ztest.Discarder{},
 					DebugLevel,
+					false,
+					nil,
 				),
 				time.Millisecond, 1, 1000)
 			b.ResetTimer()
@@ -253,6 +255,8 @@ func BenchmarkSampler_CheckWithHook(b *testing.B) {
 					NewJSONEncoder(testEncoderConfig()),
 					&ztest.Discarder{},
 					DebugLevel,
+					false,
+					nil,
 				),
 				time.Millisecond,
 				1,

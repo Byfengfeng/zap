@@ -25,8 +25,8 @@ import (
 	"testing"
 	"time"
 
-	"go.uber.org/zap/internal/ztest"
-	"go.uber.org/zap/zapcore"
+	"github.com/Byfengfeng/zap/internal/ztest"
+	"github.com/Byfengfeng/zap/zapcore"
 )
 
 type user struct {
@@ -54,6 +54,8 @@ func withBenchedLogger(b *testing.B, f func(*Logger)) {
 			zapcore.NewJSONEncoder(NewProductionConfig().EncoderConfig),
 			&ztest.Discarder{},
 			DebugLevel,
+			false,
+			nil,
 		))
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
@@ -168,6 +170,8 @@ func BenchmarkAddCallerHook(b *testing.B) {
 			zapcore.NewJSONEncoder(NewProductionConfig().EncoderConfig),
 			&ztest.Discarder{},
 			InfoLevel,
+			false,
+			nil,
 		),
 		AddCaller(),
 	)
@@ -202,6 +206,8 @@ func Benchmark100Fields(b *testing.B) {
 		zapcore.NewJSONEncoder(NewProductionConfig().EncoderConfig),
 		&ztest.Discarder{},
 		DebugLevel,
+		false,
+		nil,
 	))
 
 	// Don't include allocating these helper slices in the benchmark. Since

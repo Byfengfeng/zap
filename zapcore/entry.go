@@ -27,10 +27,10 @@ import (
 	"sync"
 	"time"
 
-	"go.uber.org/zap/internal/bufferpool"
-	"go.uber.org/zap/internal/exit"
+	"github.com/Byfengfeng/zap/internal/bufferpool"
+	"github.com/Byfengfeng/zap/internal/exit"
 
-	"go.uber.org/multierr"
+	"github.com/Byfengfeng/multierr"
 )
 
 var (
